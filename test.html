@@ -9,7 +9,7 @@
     
 </body>
 <script>
-    function high(stringOfWords){
+    function high(x){
         const alphabet = {
             a : 1, b : 2,
             c : 3, d : 4,
@@ -26,32 +26,26 @@
             y : 25, z : 26
         }
 
-        let arrayOfLetters = [];
- 
-        const words = stringOfWords.split(' ');
-        const arrayWords = [];
-        let somme = {}
-
+        let words = x.toLowerCase();
+        words = words.split(' ')
 
         words.forEach((w, index) => {
-            
             arrayWords.push([words[index]])
-
         });
-        console.log(arrayWords)
 
-        // Tableaux de mots
+        const arrayWords = [];
+        let somme = {}
+        let arraySomme = null;
+
         arrayWords.forEach(w => {
-            
             // Mots
             w.forEach((string, index) => {
-                // console.log(w)
 
                 const allLetters = string.split('');
 
                 // Lettres
                 allLetters.forEach(letter => {
-                    // Si une des lettres de l'objet est inclus dans les lettres
+                    // Si une des lettres de l'objet est inclus dans les lettres (objet)
                     if(allLetters.includes(letter)) {
                         // Remplacement lettre, numéro
                         allLetters.splice(allLetters.indexOf(letter), 1, alphabet[letter])
@@ -61,14 +55,25 @@
                     }
                 })
 
-                let arraySomme = Object.values(somme)
+                arraySomme = Object.values(somme)
                 
                 // Objet qu'on tri en ordre décroissant
                 arraySomme.sort((a, b) => b - a);
-                
-                console.log(arraySomme, string)
             })
         })
+
+        for(prop in somme) {
+
+            if(arraySomme[0] === arraySomme[1] && somme[prop] === arraySomme[0]) {
+                if(x.indexOf(prop) === 0) {
+                    return prop;
+                }
+            }
+
+            if(arraySomme[0] === somme[prop]) {
+                return prop;
+            }
+        }
     }
 
     high("are you in are you out")
