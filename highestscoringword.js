@@ -18,11 +18,12 @@ function high(x){
     let words = x.toLowerCase();
     words = words.split(' ')
 
+    const arrayWords = [];
+    
     words.forEach((w, index) => {
         arrayWords.push([words[index]])
     });
 
-    const arrayWords = [];
     let somme = {}
     let arraySomme = null;
 
